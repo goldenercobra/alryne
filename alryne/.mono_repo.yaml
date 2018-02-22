@@ -1,0 +1,8 @@
+dart:
+  - dev
+
+stages:
+  - analyze:
+    - dartanalyzer: --fatal-warnings .
+  -format:
+    - dartfmt: --dry-run --set-exit-if-changed .

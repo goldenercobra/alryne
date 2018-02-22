@@ -9,5 +9,4 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:alryne_mobile/main.dart';
 
-void main() {
-}
+void main() {}

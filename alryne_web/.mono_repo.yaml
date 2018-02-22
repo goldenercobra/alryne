@@ -1,0 +1,13 @@
+dart:
+  - dev
+
+stages:
+  - analyze:
+    - dartanalyzer: --fatal-warnings lib test
+  - format:
+    - dartfmt: --dry-run --set-exit-if-changed .
+  - build:
+    - command: pub run build_runner build --fail-on-severe
+  - unit_test:
+    - test: -p vm
+    - command: pub run build_runner test -- --platform=chrome -j1

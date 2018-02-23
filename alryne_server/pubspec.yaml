@@ -8,6 +8,8 @@ environment:
   sdk: '>=2.0.0-dev <2.0.0'
 
 dependencies:
+  alryne:
+    path: ../alryne
   args: ^0.13.7
   shelf: ^0.6.0
 

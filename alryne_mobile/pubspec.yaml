@@ -2,6 +2,8 @@ name: alryne_mobile
 description: A new Flutter project.
 
 dependencies:
+  alryne:
+    path: ../alryne
   flutter:
     sdk: flutter
 

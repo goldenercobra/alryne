@@ -55,11 +55,9 @@ CaucusType stringToCaucusType(String string) {
 /// Describes a caucus
 @JsonSerializable()
 class Caucus extends Object with _$CaucusSerializerMixin {
-  /// Length of caucus
-  final Duration length;
+  final int _length;
 
-  /// Length of speaking time, only for moderated caucus
-  Duration speakingLength;
+  int _speakingLength;
 
   /// Type of caucus
   final CaucusType type;
@@ -68,15 +66,16 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   List<Delegate> _speakers;
 
   /// Constructs Caucus from [length], [type], and optional [speakingLength]
-  Caucus({@required this.length, @required this.type, Duration speakingLength})
+  Caucus({@required Duration length, @required this.type, Duration speakingLength})
       : assert(length != null),
+        _length = length.inSeconds,
         assert(type != null) {
     if (type != CaucusType.moderated) {
       // Unmoderated caucuses do not need a speaking time
       return;
     }
-    if (length.inSeconds % speakingLength.inSeconds == 0) {
-      this.speakingLength = speakingLength;
+    if (_length % speakingLength.inSeconds == 0) {
+      _speakingLength = speakingLength.inSeconds;
     } else {
       throw new ArgumentError(
           '[speakingLength] must divide evenly into caucus length');
@@ -87,11 +86,17 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   factory Caucus.fromJson(Map<String, dynamic> map) => _$CaucusFromJson(map);
 
   /// Return maximum speakers
-  int get speakersSize => (length.inSeconds / speakingLength.inSeconds).round();
+  int get speakersSize => (_length / _speakingLength).round();
 
   /// Return list of speakers
   List<Delegate> get speakers => _speakers;
 
+  /// Length of caucus
+  Duration get length => new Duration(seconds: _length);
+
+  /// Length of speaking time, only for moderated caucus
+  Duration get speakingLength => new Duration(seconds: _speakingLength);
+  
   /// Set list of speakers
   void set speakers(List<Delegate> speakers) {
     if (speakers.length != speakersSize) {

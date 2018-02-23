@@ -19,7 +19,7 @@ class Country extends Object with _$CountrySerializerMixin {
   final int id;
 
   /// Constructs [Country] from [name] and [short] identifier
-  const Country({@required this.name, @required this.short, @required this.id})
+  Country({@required this.name, @required this.short, @required this.id})
       : assert(name != null),
         assert(short != null),
         assert(short.length == 3),

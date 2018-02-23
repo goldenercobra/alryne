@@ -20,38 +20,6 @@ enum CaucusType {
   other
 }
 
-/// Casts [CaucusType] to [String]
-String caucusTypeToString(CaucusType type) {
-  switch (type) {
-    case CaucusType.moderated:
-      return 'moderated';
-    case CaucusType.unmoderated:
-      return 'unmoderated';
-    case CaucusType.extension:
-      return 'extension';
-    case CaucusType.other:
-      return 'other';
-    default:
-      throw new ArgumentError('Invalid CaucusType');
-  }
-}
-
-/// Casts [String] to [CaucusType]
-CaucusType stringToCaucusType(String string) {
-  switch (string) {
-    case 'moderated':
-      return CaucusType.moderated;
-    case 'unmoderated':
-      return CaucusType.unmoderated;
-    case 'extension':
-      return CaucusType.extension;
-    case 'other':
-      return CaucusType.other;
-    default:
-      throw new ArgumentError('Invalid String');
-  }
-}
-
 /// Describes a caucus
 @JsonSerializable()
 class Caucus extends Object with _$CaucusSerializerMixin {

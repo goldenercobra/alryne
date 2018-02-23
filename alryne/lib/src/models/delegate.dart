@@ -3,6 +3,8 @@ import 'package:meta/meta.dart' show required;
 
 import 'country.dart' show Country;
 
+part 'delegate.g.dart';
+
 /// A Delegate
 @JsonSerializable()
 class Delegate extends Object with _$DelegateSerializerMixin {

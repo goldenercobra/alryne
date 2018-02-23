@@ -1,3 +1,3 @@
 library alryne;
 
-export 'src/alryne_base.dart';
+export 'models.dart';

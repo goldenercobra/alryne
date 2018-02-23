@@ -55,9 +55,11 @@ CaucusType stringToCaucusType(String string) {
 /// Describes a caucus
 @JsonSerializable()
 class Caucus extends Object with _$CaucusSerializerMixin {
-  final int _length;
+  /// Length of caucus (in seconds)
+  final int length;
 
-  int _speakingLength;
+  /// Length of speaking time (in seconds), only for moderated caucus
+  int speakingLength;
 
   /// Type of caucus
   final CaucusType type;
@@ -66,16 +68,15 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   List<Delegate> _speakers;
 
   /// Constructs Caucus from [length], [type], and optional [speakingLength]
-  Caucus({@required Duration length, @required this.type, Duration speakingLength})
+  Caucus({@required this.length, @required this.type, int speakingLength})
       : assert(length != null),
-        _length = length.inSeconds,
         assert(type != null) {
     if (type != CaucusType.moderated) {
       // Unmoderated caucuses do not need a speaking time
       return;
     }
-    if (_length % speakingLength.inSeconds == 0) {
-      _speakingLength = speakingLength.inSeconds;
+    if (length % speakingLength == 0) {
+      this.speakingLength = speakingLength;
     } else {
       throw new ArgumentError(
           '[speakingLength] must divide evenly into caucus length');
@@ -86,16 +87,10 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   factory Caucus.fromJson(Map<String, dynamic> map) => _$CaucusFromJson(map);
 
   /// Return maximum speakers
-  int get speakersSize => (_length / _speakingLength).round();
+  int get speakersSize => (length / speakingLength).round();
 
   /// Return list of speakers
   List<Delegate> get speakers => _speakers;
-
-  /// Length of caucus
-  Duration get length => new Duration(seconds: _length);
-
-  /// Length of speaking time, only for moderated caucus
-  Duration get speakingLength => new Duration(seconds: _speakingLength);
   
   /// Set list of speakers
   void set speakers(List<Delegate> speakers) {

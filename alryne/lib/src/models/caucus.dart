@@ -33,7 +33,7 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   final CaucusType type;
 
   /// List of speakers, only for moderated caucus
-  List<Delegate> _speakers;
+  List<Delegate> speakers;
 
   /// Constructs Caucus from [length], [type], and optional [speakingLength]
   Caucus({@required this.length, @required this.type, int speakingLength})
@@ -44,6 +44,7 @@ class Caucus extends Object with _$CaucusSerializerMixin {
       return;
     }
     if (length % speakingLength == 0) {
+      speakers = new List<Delegate>.filled((length / speakingLength).round(), null);
       this.speakingLength = speakingLength;
     } else {
       throw new ArgumentError(
@@ -55,16 +56,5 @@ class Caucus extends Object with _$CaucusSerializerMixin {
   factory Caucus.fromJson(Map<String, dynamic> map) => _$CaucusFromJson(map);
 
   /// Return maximum speakers
-  int get speakersSize => (length / speakingLength).round();
-
-  /// Return list of speakers
-  List<Delegate> get speakers => _speakers;
-  
-  /// Set list of speakers
-  void set speakers(List<Delegate> speakers) {
-    if (speakers.length != speakersSize) {
-      throw new ArgumentError('[speakers] size must be correct size');
-    }
-    _speakers = speakers;
-  }
+  int get speakersSize => speakers.length;
 }

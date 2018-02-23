@@ -99,3 +99,4 @@ class Caucus extends Object with _$CaucusSerializerMixin {
     }
     _speakers = speakers;
   }
+}

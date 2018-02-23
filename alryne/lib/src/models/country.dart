@@ -25,5 +25,5 @@ class Country extends Object with _$CountrySerializerMixin {
         assert(short.length == 3),
         assert(id != null);
     
-  factory Country.fromJson(Map<String, dynamic> map) => _$UserFromJson(map);
+  factory Country.fromJson(Map<String, dynamic> map) => _$CountryFromJson(map);
 }

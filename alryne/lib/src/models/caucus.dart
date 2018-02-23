@@ -24,15 +24,19 @@ enum CaucusType {
 @JsonSerializable()
 class Caucus extends Object with _$CaucusSerializerMixin {
   /// Length of caucus (in seconds)
+  @override
   final int length;
 
   /// Length of speaking time (in seconds), only for moderated caucus
+  @override
   int speakingLength;
 
   /// Type of caucus
+  @override
   final CaucusType type;
 
   /// List of speakers, only for moderated caucus
+  @override
   List<Delegate> speakers;
 
   /// Constructs Caucus from [length], [type], and optional [speakingLength]
@@ -52,7 +56,7 @@ class Caucus extends Object with _$CaucusSerializerMixin {
     }
   }
 
-  /// Constructs Caucus from [map]
+  /// Constructs [Caucus] from [map]
   factory Caucus.fromJson(Map<String, dynamic> map) => _$CaucusFromJson(map);
 
   /// Return maximum speakers

@@ -9,9 +9,11 @@ part 'delegate.g.dart';
 @JsonSerializable()
 class Delegate extends Object with _$DelegateSerializerMixin {
   /// List of people who are representing the country
+  @override
   List<String> names;
 
   /// Country the delegate is representing
+  @override
   Country country;
 
   /// Constructs [Delegate] from [names] and [country]
@@ -21,10 +23,6 @@ class Delegate extends Object with _$DelegateSerializerMixin {
 
   /// Constructs [Delegate] from [map]
   factory Delegate.fromJson(Map<String, dynamic> map) => _$DelegateFromJson(map);
-
-  /// Converts [Delegate] to [Map]
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{'names': names, 'country': country};
 
   /// Returns true if delegation is managed by a single delegate
   bool get single => names.length == 1;

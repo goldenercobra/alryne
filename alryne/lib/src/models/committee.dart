@@ -12,12 +12,15 @@ part 'committee.g.dart';
 @JsonSerializable()
 class Committee extends Object with _$CommitteeSerializerMixin {
   /// Topic of the Committee
+  @override
   final String topic;
 
   /// Total list of delegates
+  @override
   List<Delegate> delegates;
 
   /// Elapsed caucuses, in order
+  @override
   Queue<Caucus> caucuses;
 
   /// Constructs [Committee] from topic, delegates, and caucuses
@@ -27,7 +30,7 @@ class Committee extends Object with _$CommitteeSerializerMixin {
         assert(delegates != null),
         assert(caucuses != null);
 
-  /// Constructs [Committee] from [Map]
+  /// Constructs [Committee] from [map]
   factory Committee.fromJson(Map<String, dynamic> map) => _$CommitteeFromJson(map);
 
   /// Get current caucus

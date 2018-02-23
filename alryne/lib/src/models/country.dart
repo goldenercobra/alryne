@@ -1,6 +1,3 @@
-import 'dart:async' show Future;
-import 'dart:convert' show JSON;
-
 import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
 import 'package:meta/meta.dart' show required;
 

@@ -25,10 +25,8 @@ class Committee extends Object with _$CommitteeSerializerMixin {
 
   /// Constructs [Committee] from topic, delegates, and caucuses
   Committee(
-      {@required this.topic, @required this.delegates, @required this.caucuses})
-      : assert(topic != null),
-        assert(delegates != null),
-        assert(caucuses != null);
+      {@required this.topic, this.delegates, this.caucuses})
+      : assert(topic != null);
 
   /// Constructs [Committee] from [map]
   factory Committee.fromJson(Map<String, dynamic> map) => _$CommitteeFromJson(map);

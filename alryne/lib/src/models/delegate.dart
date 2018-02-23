@@ -17,9 +17,7 @@ class Delegate extends Object with _$DelegateSerializerMixin {
   Country country;
 
   /// Constructs [Delegate] from [names] and [country]
-  Delegate({@required this.names, @required this.country})
-      : assert(names != null),
-        assert(country != null);
+  Delegate({this.names, this.country});
 
   /// Constructs [Delegate] from [map]
   factory Delegate.fromJson(Map<String, dynamic> map) => _$DelegateFromJson(map);

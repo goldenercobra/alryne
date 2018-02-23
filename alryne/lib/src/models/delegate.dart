@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
-import 'package:meta/meta.dart' show required;
 
 import 'country.dart' show Country;
 

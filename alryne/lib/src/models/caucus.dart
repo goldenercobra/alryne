@@ -12,7 +12,7 @@ abstract class Caucus extends Object {
   /// Length of the caucus (in seconds)
   final int length;
 
-  static const _CaucusTag _tag = _CaucusTag.caucus;
+  final _CaucusTag _tag = _CaucusTag.caucus;
 
   /// Constructs [Caucus]
   Caucus({@required this.topic, @required this.length})
@@ -53,7 +53,9 @@ class ModeratedCaucus extends Caucus {
   /// List of speakers, in order
   List<Delegate> _speakers;
 
-  static const _CaucusTag _tag = _CaucusTag.moderated;
+  @override
+  // ignore: overridden_fields
+  final _CaucusTag _tag = _CaucusTag.moderated;
 
   /// Constructs [ModeratedCaucus]
   ModeratedCaucus({
@@ -74,12 +76,9 @@ class ModeratedCaucus extends Caucus {
   @override
   ModeratedCaucus.fromJson(Map<String, dynamic> map)
       : assert(map['tag'] != null),
-        assert(map['tag'] == _tag.toString().split('.')[1]),
         assert(map['speakingLength'] != null),
         speakingLength = map['speakingLength'],
-        assert(map['speakers'] != null),
-        _speakers = map['speakers']
-            .map((Map<String, dynamic> item) => new Delegate.fromJson(map)),
+        _speakers = map['speakers']?.map((Map<String, dynamic> item) => new Delegate.fromJson(map))?.toList(),
         assert(map['topic'] != null),
         assert(map['length'] != null),
         super(topic: map['topic'], length: map['length']);
@@ -111,7 +110,9 @@ class ModeratedCaucus extends Caucus {
 
 /// Unmoderated Caucus, basically a free-for-all
 class UnmoderatedCaucus extends Caucus {
-  static const _CaucusTag _tag = _CaucusTag.unmoderated;
+  @override
+  // ignore: overridden_fields
+  final _CaucusTag _tag = _CaucusTag.unmoderated;
 
   /// Constructs [UnmoderatedCaucus]
   UnmoderatedCaucus({@required String topic, @required int length})
@@ -123,7 +124,6 @@ class UnmoderatedCaucus extends Caucus {
   @override
   UnmoderatedCaucus.fromJson(Map<String, dynamic> map)
       : assert(map['tag'] != null),
-        assert(map['tag'] == _tag.toString().split('.')[1]),
         assert(map['topic'] != null),
         assert(map['length'] != null),
         super(topic: map['topic'], length: map['length']);
@@ -131,7 +131,9 @@ class UnmoderatedCaucus extends Caucus {
 
 /// Other Caucus, for unrelated events (censure, join new country, etc)
 class OtherCaucus extends Caucus {
-  static const _CaucusTag _tag = _CaucusTag.other;
+  @override
+  // ignore: overridden_fields
+  final _CaucusTag _tag = _CaucusTag.other;
 
   /// Constructs [OtherCaucus]
   OtherCaucus({@required String topic, @required int length})
@@ -143,7 +145,6 @@ class OtherCaucus extends Caucus {
   @override
   OtherCaucus.fromJson(Map<String, dynamic> map)
       : assert(map['tag'] != null),
-        assert(map['tag'] == _tag.toString().split('.')[1]),
         assert(map['topic'] != null),
         assert(map['length'] != null),
         super(topic: map['topic'], length: map['length']);

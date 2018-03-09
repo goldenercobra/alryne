@@ -1,4 +1,4 @@
-import 'dart:math/math.dart' as math;
+import 'dart:math' as math;
 
 import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
 import 'package:meta/meta.dart' show required;
@@ -34,6 +34,6 @@ class Conference extends Object with _$ConferenceSerializerMixin {
   factory Conference.fromJson(Map<String, dynamic> map) => _$ConferenceFromJson(map);
 
   /// Generate Random Id
-  static String generateId(math.Random generator) => new String.fromCharCodes(
-      new List<int>.generate(4, (_) => generator.nextInt(25) + 65));
+  static String generateId([math.Random generator]) => new String.fromCharCodes(
+      new List<int>.generate(4, (_) => (generator ?? new math.Random.secure()).nextInt(25) + 65));
 }

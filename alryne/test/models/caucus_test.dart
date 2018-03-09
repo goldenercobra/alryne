@@ -6,7 +6,7 @@ import 'package:alryne/models.dart';
 
 void main() {
   group('constructor', () {
-    test('moderated', () {
+    test('> moderated', () {
       final ModeratedCaucus caucus = new ModeratedCaucus(topic: 'test', length: 100, speakingLength: 10);
       expect(caucus.topic, equals('test'));
       expect(caucus.length, equals(100));
@@ -15,12 +15,12 @@ void main() {
 
       expect(() => new ModeratedCaucus(topic: 'test2', length: 100, speakingLength: 75), throwsArgumentError);
     });
-    test('unmoderated', () {
+    test('> unmoderated', () {
       final UnmoderatedCaucus caucus = new UnmoderatedCaucus(topic: 'test', length: 600);
       expect(caucus.topic, equals('test'));
       expect(caucus.length, equals(600));
     });
-    test('other', () {
+    test('> other', () {
       final UnmoderatedCaucus caucus = new UnmoderatedCaucus(topic: 'test', length: 1200);
       expect(caucus.topic, equals('test'));
       expect(caucus.length, equals(1200));
@@ -28,7 +28,7 @@ void main() {
   });
 
   group('serialization', () {
-    test('no moderated info lost', () {
+    test('> no moderated info lost', () {
       final Caucus caucus = new ModeratedCaucus(topic: 'test', length: 100, speakingLength: 10);
       final Caucus constructedCaucus = new Caucus.fromJson(json.decode(json.encode(caucus)));
       /// Json has to be compared since classes data cannot be compared
@@ -36,7 +36,7 @@ void main() {
       expect(constructedCaucus.toJson(), equals(caucus.toJson()));
     });
 
-    test('no unmoderated info lost', () {
+    test('> no unmoderated info lost', () {
       final Caucus caucus = new UnmoderatedCaucus(topic: 'test', length: 100);
       final Caucus constructedCaucus = new Caucus.fromJson(json.decode(json.encode(caucus)));
       /// Json has to be compared since classes data cannot be compared
@@ -44,7 +44,7 @@ void main() {
       expect(constructedCaucus.toJson(), equals(caucus.toJson()));
     });
 
-    test('no other info lost', () {
+    test('> no other info lost', () {
       final Caucus caucus = new OtherCaucus(topic: 'test', length: 100);
       final Caucus constructedCaucus = new Caucus.fromJson(json.decode(json.encode(caucus)));
       /// Json has to be compared since classes data cannot be compared
@@ -54,7 +54,7 @@ void main() {
   });
 
   group('moderated caucus speakers size', (){
-    test('nothing happens if correct size', (){
+    test('> nothing happens if correct size', (){
       final ModeratedCaucus caucus = new ModeratedCaucus(topic: 'test', length: 150, speakingLength: 50);
       final List<Delegate> speakers = <Delegate>[
         new Delegate(
@@ -72,7 +72,7 @@ void main() {
       ];
       expect(() => caucus.speakers = speakers, returnsNormally);
     });
-    test('throws if incorrect size', (){
+    test('> throws if incorrect size', (){
       final ModeratedCaucus caucus = new ModeratedCaucus(topic: 'test', length: 150, speakingLength: 50);
       final List<Delegate> speakers = <Delegate>[
         new Delegate(

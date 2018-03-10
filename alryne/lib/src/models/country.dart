@@ -22,8 +22,12 @@ class Country extends Object with _$CountrySerializerMixin {
   Country({@required this.name, @required this.short, @required this.id})
       : assert(name != null),
         assert(short != null),
-        assert(short.length == 3),
-        assert(id != null);
+        assert(id != null) {
+    if (short.length != 3) {
+      throw new ArgumentError.value(
+          short.length, 'short', 'must have a length equal to 3');
+    }
+  }
 
   /// Constructs [Country] from [map]
   factory Country.fromJson(Map<String, dynamic> map) => _$CountryFromJson(map);

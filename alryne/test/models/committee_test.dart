@@ -1,6 +1,7 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
-import 'package:alryne/models.dart';
+import 'package:alryne/models.dart'
+    show Caucus, Committee, Country, Delegate, ModeratedCaucus, OtherCaucus;
 
 import 'package:test/test.dart';
 

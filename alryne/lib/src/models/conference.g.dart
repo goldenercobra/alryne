@@ -8,9 +8,8 @@ part of 'conference.dart';
 
 Conference _$ConferenceFromJson(Map<String, dynamic> json) => new Conference(
     id: json['id'] as String,
-    committee: json['committee'] == null
-        ? null
-        : new Committee.fromJson(json['committee'] as Map<String, dynamic>));
+    committee:
+        new Committee.fromJson(json['committee'] as Map<String, dynamic>));
 
 abstract class _$ConferenceSerializerMixin {
   String get id;

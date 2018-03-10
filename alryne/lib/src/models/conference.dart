@@ -8,7 +8,7 @@ import 'committee.dart';
 part 'conference.g.dart';
 
 /// A wrapper over [Committee] for easy storage
-@JsonSerializable()
+@JsonSerializable(nullable: false)
 class Conference extends Object with _$ConferenceSerializerMixin {
   /// Id of the Conference, used for storing purposes
   @override
@@ -27,7 +27,7 @@ class Conference extends Object with _$ConferenceSerializerMixin {
   /// Create new [Conference], generating a random new Id
   Conference.create({@required String topic})
       : assert(topic != null),
-        id = generateId(math.Random.secure()),
+        id = generateId(),
         committee = new Committee(topic: topic);
 
   /// Construct [Conference] from [map]

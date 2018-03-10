@@ -1,6 +1,6 @@
 import 'dart:collection' show Queue;
 
-import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
+import 'package:json_annotation/json_annotation.dart' show JsonSerializable, JsonKey;
 import 'package:meta/meta.dart' show required;
 
 import 'caucus.dart' show Caucus;
@@ -14,6 +14,7 @@ part 'committee.g.dart';
 class Committee extends Object with _$CommitteeSerializerMixin {
   /// Topic of the Committee
   @override
+  @JsonKey(nullable: false)
   final String topic;
 
   /// Total list of delegates

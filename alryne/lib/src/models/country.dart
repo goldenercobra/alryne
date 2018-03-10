@@ -4,7 +4,7 @@ import 'package:meta/meta.dart' show required;
 part 'country.g.dart';
 
 /// Represents a Country
-@JsonSerializable()
+@JsonSerializable(nullable: false)
 class Country extends Object with _$CountrySerializerMixin {
   /// Full Name of the Country
   @override

@@ -26,7 +26,7 @@ abstract class Caucus extends Object {
     switch (_CaucusTag.values.firstWhere(
         (_CaucusTag tag) => tag.toString().split('.')[1] == map['tag'],
         orElse: () =>
-            throw ArgumentError.value(map, 'map', 'invalid [tag] provided'))) {
+            throw new ArgumentError.value(map, 'map', 'invalid [tag] provided'))) {
       case _CaucusTag.moderated:
         return new ModeratedCaucus.fromJson(map);
       case _CaucusTag.unmoderated:

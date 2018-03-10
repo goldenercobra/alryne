@@ -37,13 +37,13 @@ void main() {
   });
 
   group('generator', () {
-    for (int i = 1; i <= 25; i++) {
-      test('> random generator (test $i)', () {
+    test('> random generator', () {
+      for (int i = 0; i < 100; i++) {
         final String id = Conference.generateId();
         for (int codeUnit in id.codeUnits) {
           expect(codeUnit, inInclusiveRange(65, 65 + 25));
         }
-      });
-    }
+      }
+    });
   });
 }

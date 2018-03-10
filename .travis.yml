@@ -11,24 +11,28 @@ jobs:
       script: ./tool/travis.sh dartfmt
       env: PKG="alryne"
       dart: dev
-    - stage: analyze
-      script: ./tool/travis.sh dartanalyzer_0
-      env: PKG="alryne_mobile"
-      dart: dev
-    - stage: format
-      script: ./tool/travis.sh dartfmt
-      env: PKG="alryne_mobile"
-      dart: dev
-    - stage: analyze
-      script: ./tool/travis.sh dartanalyzer_0
-      env: PKG="alryne_server"
-      dart: dev
-    - stage: format
-      script: ./tool/travis.sh dartfmt
-      env: PKG="alryne_server"
+    - stage: unit_test
+      script: ./tool/travis.sh command_0
+      env: PKG="alryne"
       dart: dev
     - stage: analyze
       script: ./tool/travis.sh dartanalyzer_1
+      env: PKG="alryne_mobile"
+      dart: dev
+    - stage: format
+      script: ./tool/travis.sh dartfmt
+      env: PKG="alryne_mobile"
+      dart: dev
+    - stage: analyze
+      script: ./tool/travis.sh dartanalyzer_1
+      env: PKG="alryne_server"
+      dart: dev
+    - stage: format
+      script: ./tool/travis.sh dartfmt
+      env: PKG="alryne_server"
+      dart: dev
+    - stage: analyze
+      script: ./tool/travis.sh dartanalyzer_2
       env: PKG="alryne_web"
       dart: dev
     - stage: format
@@ -36,7 +40,7 @@ jobs:
       env: PKG="alryne_web"
       dart: dev
     - stage: build
-      script: ./tool/travis.sh command_0
+      script: ./tool/travis.sh command_1
       env: PKG="alryne_web"
       dart: dev
     - stage: unit_test
@@ -44,7 +48,7 @@ jobs:
       env: PKG="alryne_web"
       dart: dev
     - stage: unit_test
-      script: ./tool/travis.sh command_1
+      script: ./tool/travis.sh command_2
       env: PKG="alryne_web"
       dart: dev
 

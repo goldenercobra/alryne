@@ -21,21 +21,31 @@ while (( "$#" )); do
   case $TASK in
   command_0) echo
     echo -e '\033[1mTASK: command_0\033[22m'
-    echo -e 'pub run build_runner build --fail-on-severe'
-    pub run build_runner build --fail-on-severe || EXIT_CODE=$?
+    echo -e 'pub run test'
+    pub run test || EXIT_CODE=$?
     ;;
   command_1) echo
     echo -e '\033[1mTASK: command_1\033[22m'
+    echo -e 'pub run build_runner build --fail-on-severe'
+    pub run build_runner build --fail-on-severe || EXIT_CODE=$?
+    ;;
+  command_2) echo
+    echo -e '\033[1mTASK: command_2\033[22m'
     echo -e 'pub run build_runner test -- --platform=chrome -j1'
     pub run build_runner test -- --platform=chrome -j1 || EXIT_CODE=$?
     ;;
   dartanalyzer_0) echo
     echo -e '\033[1mTASK: dartanalyzer_0\033[22m'
-    echo -e 'dartanalyzer --fatal-warnings .'
-    dartanalyzer --fatal-warnings . || EXIT_CODE=$?
+    echo -e 'dartanalyzer --fatal-warnings --options=analysis_options.yaml .'
+    dartanalyzer --fatal-warnings --options=analysis_options.yaml . || EXIT_CODE=$?
     ;;
   dartanalyzer_1) echo
     echo -e '\033[1mTASK: dartanalyzer_1\033[22m'
+    echo -e 'dartanalyzer --fatal-warnings .'
+    dartanalyzer --fatal-warnings . || EXIT_CODE=$?
+    ;;
+  dartanalyzer_2) echo
+    echo -e '\033[1mTASK: dartanalyzer_2\033[22m'
     echo -e 'dartanalyzer --fatal-warnings lib test'
     dartanalyzer --fatal-warnings lib test || EXIT_CODE=$?
     ;;

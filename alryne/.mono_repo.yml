@@ -3,6 +3,8 @@ dart:
 
 stages:
   - analyze:
-    - dartanalyzer: --fatal-warnings .
+    - dartanalyzer: --fatal-warnings --options=analysis_options.yaml .
   - format:
     - dartfmt: --dry-run --set-exit-if-changed .
+  - unit_test:
+    - command: pub run test

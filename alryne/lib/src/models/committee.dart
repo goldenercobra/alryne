@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
 import 'package:meta/meta.dart' show required;
 
 import 'caucus.dart' show Caucus;
+import 'crisis.dart' show Crisis;
 import 'delegate.dart' show Delegate;
 
 part 'committee.g.dart';
@@ -21,11 +22,15 @@ class Committee extends Object with _$CommitteeSerializerMixin {
 
   /// Elapsed caucuses, in order
   @override
-  Queue<Caucus> caucuses;
+  List<Caucus> caucuses;
+
+  /// Crises, elapsed or not
+  @override
+  List<Crisis> crises;
 
   /// Constructs [Committee] from topic, delegates, and caucuses
   Committee(
-      {@required this.topic, this.delegates, this.caucuses})
+      {@required this.topic, this.delegates, this.caucuses, this.crises})
       : assert(topic != null);
 
   /// Constructs [Committee] from [map]

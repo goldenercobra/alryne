@@ -12,16 +12,24 @@ Committee _$CommitteeFromJson(Map<String, dynamic> json) => new Committee(
         ?.map((e) =>
             e == null ? null : new Delegate.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    caucuses: (json['caucuses'] as List)?.map((e) =>
-        e == null ? null : new Caucus.fromJson(e as Map<String, dynamic>)));
+    caucuses: (json['caucuses'] as List)
+        ?.map((e) =>
+            e == null ? null : new Caucus.fromJson(e as Map<String, dynamic>))
+        ?.toList())
+  ..crises = (json['crises'] as List)
+      ?.map((e) =>
+          e == null ? null : new Crisis.fromJson(e as Map<String, dynamic>))
+      ?.toList();
 
 abstract class _$CommitteeSerializerMixin {
   String get topic;
   List<Delegate> get delegates;
-  Queue<Caucus> get caucuses;
+  List<Caucus> get caucuses;
+  List<Crisis> get crises;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'topic': topic,
         'delegates': delegates,
-        'caucuses': caucuses?.toList()
+        'caucuses': caucuses,
+        'crises': crises
       };
 }

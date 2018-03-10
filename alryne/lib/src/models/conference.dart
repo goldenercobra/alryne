@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
 import 'package:meta/meta.dart' show required;
+import 'package:quiver/core.dart' show hash2;
 
 import 'committee.dart';
 
@@ -19,8 +20,7 @@ class Conference extends Object with _$ConferenceSerializerMixin {
   final Committee committee;
 
   /// Construct [Conference]
-  Conference(
-      {@required this.id, @required this.committee})
+  Conference({@required this.id, @required this.committee})
       : assert(id != null),
         assert(committee != null);
 
@@ -31,9 +31,18 @@ class Conference extends Object with _$ConferenceSerializerMixin {
         committee = new Committee(topic: topic);
 
   /// Construct [Conference] from [map]
-  factory Conference.fromJson(Map<String, dynamic> map) => _$ConferenceFromJson(map);
+  factory Conference.fromJson(Map<String, dynamic> map) =>
+      _$ConferenceFromJson(map);
 
   /// Generate Random Id
-  static String generateId([math.Random generator]) => new String.fromCharCodes(
-      new List<int>.generate(4, (_) => (generator ?? new math.Random.secure()).nextInt(25) + 65));
+  static String generateId([math.Random generator]) =>
+      new String.fromCharCodes(new List<int>.generate(
+          4, (_) => (generator ?? new math.Random.secure()).nextInt(25) + 65));
+
+  @override
+  bool operator ==(dynamic other) =>
+      other is Conference && other.id == id && other.committee == committee;
+
+  @override
+  int get hashCode => hash2(id.hashCode, committee.hashCode);
 }

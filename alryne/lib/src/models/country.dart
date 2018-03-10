@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart' show JsonSerializable;
 import 'package:meta/meta.dart' show required;
+import 'package:quiver/core.dart' show hash3;
 
 part 'country.g.dart';
 
@@ -31,4 +32,14 @@ class Country extends Object with _$CountrySerializerMixin {
 
   /// Constructs [Country] from [map]
   factory Country.fromJson(Map<String, dynamic> map) => _$CountryFromJson(map);
+
+  @override
+  bool operator ==(dynamic other) =>
+      other is Country &&
+      other.name == name &&
+      other.short == short &&
+      other.id == id;
+
+  @override
+  int get hashCode => hash3(name.hashCode, short.hashCode, id.hashCode);
 }

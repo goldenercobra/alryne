@@ -78,7 +78,7 @@ void main() {
       final Committee committee = new Committee(topic: 'test');
       final Committee constructedCommittee =
           new Committee.fromJson(json.decode(json.encode(committee)));
-      expect(constructedCommittee.toJson(), equals(committee.toJson()));
+      expect(constructedCommittee, equals(committee));
     });
 
     test('> topic and delegates', () {
@@ -100,8 +100,7 @@ void main() {
           new Committee(topic: 'test', delegates: delegates);
       final Committee constructedCommittee =
           new Committee.fromJson(json.decode(json.encode(committee)));
-      constructedCommittee.delegates.forEach(print);
-      expect(constructedCommittee.toJson(), equals(committee.toJson()));
+      expect(constructedCommittee, equals(committee));
     });
 
     test('> topic and caucuses', () {
@@ -113,7 +112,7 @@ void main() {
           new Committee(topic: 'test', caucuses: caucuses);
       final Committee constructedCommittee =
           new Committee.fromJson(json.decode(json.encode(committee)));
-      expect(constructedCommittee.toJson(), equals(committee.toJson()));
+      expect(constructedCommittee, equals(committee));
     });
 
     test('> topic, delegates, caucuses', () {
@@ -139,7 +138,7 @@ void main() {
           topic: 'test', delegates: delegates, caucuses: caucuses);
       final Committee constructedCommittee =
           new Committee.fromJson(json.decode(json.encode(committee)));
-      expect(constructedCommittee.toJson(), equals(committee.toJson()));
+      expect(constructedCommittee, equals(committee));
     });
   });
 }

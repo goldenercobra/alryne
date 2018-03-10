@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart' show ListEquality;
 import 'package:meta/meta.dart' show required;
+import 'package:quiver/core.dart' show hash2, hash4;
 
 import 'delegate.dart' show Delegate;
 
@@ -43,6 +45,13 @@ abstract class Caucus extends Object {
         'topic': topic,
         'length': length,
       };
+
+  @override
+  bool operator ==(dynamic other) =>
+      other is Caucus && other.topic == topic && other.length == length;
+
+  @override
+  int get hashCode => hash2(topic.hashCode, length.hashCode);
 }
 
 /// Moderated Caucus, a set list of speakers and speaking time
@@ -78,7 +87,9 @@ class ModeratedCaucus extends Caucus {
       : assert(map['tag'] != null),
         assert(map['speakingLength'] != null),
         speakingLength = map['speakingLength'],
-        _speakers = map['speakers']?.map((Map<String, dynamic> item) => new Delegate.fromJson(map))?.toList(),
+        _speakers = map['speakers']
+            ?.map((Map<String, dynamic> item) => new Delegate.fromJson(map))
+            ?.toList(),
         assert(map['topic'] != null),
         assert(map['length'] != null),
         super(topic: map['topic'], length: map['length']);
@@ -106,6 +117,18 @@ class ModeratedCaucus extends Caucus {
     }
     _speakers = speakers;
   }
+
+  @override
+  bool operator ==(dynamic other) =>
+      other is ModeratedCaucus &&
+      other.topic == topic &&
+      other.length == length &&
+      other.speakingLength == speakingLength &&
+      const ListEquality<Delegate>().equals(other.speakers, speakers);
+
+  @override
+  int get hashCode => hash4(topic.hashCode, length.hashCode,
+      speakingLength.hashCode, speakers.hashCode);
 }
 
 /// Unmoderated Caucus, basically a free-for-all

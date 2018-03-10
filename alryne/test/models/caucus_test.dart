@@ -48,7 +48,7 @@ void main() {
 
       /// Json has to be compared since classes data cannot be compared
       expect(constructedCaucus, const isInstanceOf<ModeratedCaucus>());
-      expect(constructedCaucus.toJson(), equals(caucus.toJson()));
+      expect(constructedCaucus, equals(caucus));
     });
 
     test('> no unmoderated info lost', () {
@@ -58,7 +58,7 @@ void main() {
 
       /// Json has to be compared since classes data cannot be compared
       expect(constructedCaucus, const isInstanceOf<UnmoderatedCaucus>());
-      expect(constructedCaucus.toJson(), equals(caucus.toJson()));
+      expect(constructedCaucus, equals(caucus));
     });
 
     test('> no other info lost', () {
@@ -68,7 +68,7 @@ void main() {
 
       /// Json has to be compared since classes data cannot be compared
       expect(constructedCaucus, const isInstanceOf<OtherCaucus>());
-      expect(constructedCaucus.toJson(), equals(caucus.toJson()));
+      expect(constructedCaucus, equals(caucus));
     });
   });
 

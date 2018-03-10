@@ -21,7 +21,7 @@ void main() {
       expect(caucus.length, equals(600));
     });
     test('> other', () {
-      final UnmoderatedCaucus caucus = new UnmoderatedCaucus(topic: 'test', length: 1200);
+      final OtherCaucus caucus = new OtherCaucus(topic: 'test', length: 1200);
       expect(caucus.topic, equals('test'));
       expect(caucus.length, equals(1200));
     });

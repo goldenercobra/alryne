@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:test/test.dart';
-
 import 'package:alryne/models.dart';
+
+import 'package:test/test.dart';
 
 void main() {
   group('constructor', () {
